@@ -31,7 +31,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
-
+/*
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("WebApp",
@@ -41,6 +41,19 @@ builder.Services.AddCors(options =>
                 .WithOrigins("http://localhost:5173") // porta do React
                 .AllowAnyHeader()
                 .AllowAnyMethod();
+        });
+}); */
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        builder =>
+        {
+            builder
+                .WithOrigins("https://gestao-financeira-liart.vercel.app") // frontend que vai acessar
+                .AllowAnyMethod()
+                .AllowAnyHeader();
         });
 });
 
