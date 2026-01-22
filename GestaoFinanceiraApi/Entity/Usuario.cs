@@ -7,7 +7,7 @@
         public string SenhaHash { get; private set; } = string.Empty;
 
 
-        public DateTime CriadoEm { get; set; }
+
 
 
         public bool IsAdmin { get; private set; }

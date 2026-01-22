@@ -13,6 +13,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -94,6 +96,9 @@ builder.Services.AddScoped<IResumoFinanceiroService, ResumoFinanceiroService>();
 
 
 var app = builder.Build();
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://*:{port}");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

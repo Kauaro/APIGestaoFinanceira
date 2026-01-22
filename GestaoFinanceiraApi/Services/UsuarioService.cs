@@ -24,8 +24,7 @@ namespace GestaoFinanceiraApi.Services
             {
                 Id = usuario.Id,
                 Nome = usuario.Nome,
-                Email = usuario.Email,
-                CriadoEm = usuario.CriadoEm
+                Email = usuario.Email
             };
         }
     }
