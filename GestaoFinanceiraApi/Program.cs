@@ -38,7 +38,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:5173") // porta do React
+                .WithOrigins("http://localhost:5173") 
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
@@ -51,7 +51,7 @@ builder.Services.AddCors(options =>
         builder =>
         {
             builder
-                .WithOrigins("https://gestao-financeira-liart.vercel.app") // frontend que vai acessar
+                .WithOrigins("https://gestao-financeira-liart.vercel.app") 
                 .AllowAnyMethod()
                 .AllowAnyHeader();
         });
@@ -120,7 +120,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("WebApp");
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
