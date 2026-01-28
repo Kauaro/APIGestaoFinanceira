@@ -4,7 +4,8 @@
     {
         public decimal TotalGanhos { get; set; }
         public decimal TotalGastos { get; set; }
-        public decimal Saldo => TotalGanhos - TotalGastos;
+        public decimal TotalInvestimentos { get; set; }
+        public decimal SaldoDisponivel => TotalGanhos - TotalGastos;
     }
 
 }

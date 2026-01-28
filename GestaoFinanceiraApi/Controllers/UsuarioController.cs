@@ -14,10 +14,12 @@ namespace GestaoFinanceiraApi.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IExtratoService _extratoService;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UsuarioController(IUsuarioService usuarioService, IExtratoService extratoService)
         {
             _usuarioService = usuarioService;
+            _extratoService = extratoService;
         }
 
         [HttpGet("me")]
@@ -30,6 +32,31 @@ namespace GestaoFinanceiraApi.Controllers
             var usuario = await _usuarioService.ObterUsuarioLogadoAsync(usuarioId);
 
             return Ok(usuario);
+        }
+
+
+
+
+        [HttpGet("extrato-total")]
+        public async Task<IActionResult> ObterExtratoTotal()
+        {
+            var usuarioId = long.Parse(
+                User.FindFirst(ClaimTypes.NameIdentifier)!.Value
+            );
+            var extrato = await _extratoService.ObterExtratoTotalAsync(usuarioId);
+            return Ok(extrato);
+        }
+
+
+
+        [HttpGet("extrato-mensal")]
+        public async Task<IActionResult> ObterExtratoMensal([FromQuery] int ano, [FromQuery] int mes)
+        {
+            var usuarioId = long.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+
+            var extrato = await _extratoService.ObterExtratoMensalAsync(usuarioId, ano, mes);
+
+            return Ok(extrato);
         }
     }
 

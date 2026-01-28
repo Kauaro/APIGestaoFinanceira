@@ -14,18 +14,35 @@ namespace GestaoFinanceiraApi.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Usuario>()
                 .HasKey(u => u.Id);
 
             modelBuilder.Entity<Usuario>()
                 .Property(u => u.Id)
                 .ValueGeneratedOnAdd();
+
+
+
+            modelBuilder.Entity<Investimento>()
+                .ToTable("Investimentos", "dbo");
+
+            modelBuilder.Entity<Investimento>()
+                .HasKey(i => i.Id);
+
+            modelBuilder.Entity<Investimento>()
+                .Property(i => i.Id)
+                .ValueGeneratedOnAdd();
         }
+
+
 
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Gastos> Gastos { get; set; }
         public DbSet<Ganhos> Ganhos { get; set; }
+        public DbSet<Investimento> Investimentos { get; set; }
 
 
 

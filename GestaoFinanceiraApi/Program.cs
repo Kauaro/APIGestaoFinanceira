@@ -31,7 +31,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
-/*
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("WebApp",
@@ -42,9 +42,11 @@ builder.Services.AddCors(options =>
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
-}); */
+}); 
 
 
+/*
+ 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy",
@@ -57,6 +59,7 @@ builder.Services.AddCors(options =>
         });
 });
 
+*/
 
 
 
@@ -103,6 +106,12 @@ builder.Services.AddScoped<IGastosService, GastosService>();
 builder.Services.AddScoped<IGastosRepository, GastosRepository>();
 
 
+builder.Services.AddScoped<IInvestimentoRepository, InvestimentoRepository>();
+builder.Services.AddScoped<IInvestimentosService, InvestimentosService>();
+
+builder.Services.AddScoped<IExtratoService, ExtratoService>();
+
+
 builder.Services.AddScoped<IResumoFinanceiroService, ResumoFinanceiroService>();
 
 
@@ -110,8 +119,10 @@ builder.Services.AddScoped<IResumoFinanceiroService, ResumoFinanceiroService>();
 
 var app = builder.Build();
 
+
+/*
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}");
+app.Urls.Add($"http://*:{port}"); */
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -120,7 +131,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("CorsPolicy");
+app.UseCors("WebApp");
 
 app.UseHttpsRedirection();
 
