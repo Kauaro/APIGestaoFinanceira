@@ -5,24 +5,29 @@ namespace GestaoFinanceiraApi.Data.Repositories.Interface
     public interface IGanhosRepository
     {
 
-        // CRUD
+
+
         Task AdicionarAsync(Ganhos ganho);
         Task AtualizarAsync(Ganhos ganho);
         Task RemoverAsync(long id);
         Task<Ganhos?> ObterPorIdAsync(long id);
 
-        // Listagens
+        
+
+
         Task<IEnumerable<Ganhos>> ObterPorUsuarioAsync(long usuarioId);
         Task<IEnumerable<Ganhos>> ObterUltimosAsync(long usuarioId, int quantidade);
 
-        // Filtros por período
+
+
         Task<IEnumerable<Ganhos>> ObterPorPeriodoAsync(
             long usuarioId,
             DateTime dataInicio,
             DateTime dataFim
         );
 
-        // Relatórios
+
+
         Task<decimal> ObterTotalDoMesAsync(long usuarioId, int ano, int mes);
         Task<decimal> ObterTotalGeralAsync(long usuarioId);
         Task<decimal> ObterTotalDoMesAtualAsync(long usuarioId);
@@ -32,6 +37,16 @@ namespace GestaoFinanceiraApi.Data.Repositories.Interface
             DateTime dataInicio,
             DateTime dataFim
         );
+
+        Task<List<Ganhos>> ObterPorUsuarioECategoriaAsync(long usuarioId, string categoria);
+        Task<List<Ganhos>> ObterResgatesPorUsuarioECategoriaAsync(long usuarioId, string categoria);
+
+
+        Task<decimal> ObterTotalResgatesAsync(long usuarioId);
+        Task<decimal> ObterTotalResgatesDoMesAsync(long usuarioId, int ano, int mes);
+
+
+
 
     }
 }

@@ -122,5 +122,65 @@ namespace GestaoFinanceiraApi.Data.Repositories
 
 
 
+
+
+
+
+        public async Task<List<Ganhos>> ObterPorUsuarioECategoriaAsync(long usuarioId, string categoria)
+        {
+            return await _context.Ganhos
+                .Where(g => g.UsuarioId == usuarioId && g.Categoria == categoria)
+                .ToListAsync();
+        }
+
+
+
+
+
+
+
+        public async Task<List<Ganhos>> ObterResgatesPorUsuarioECategoriaAsync(long usuarioId, string categoria)
+        {
+            return await _context.Ganhos
+                .Where(g =>
+                    g.UsuarioId == usuarioId &&
+                    g.Categoria == categoria &&
+                    g.Pagamento == "Resgate de Investimento"
+                )
+                .ToListAsync();
+        }
+
+
+
+
+
+
+
+        public async Task<decimal> ObterTotalResgatesAsync(long usuarioId)
+        {
+            return await _context.Ganhos
+                .Where(g =>
+                    g.UsuarioId == usuarioId &&
+                    (g.Categoria == "Investimento" || g.Categoria == "Poupança"))
+                .SumAsync(g => g.Valor);
+        }
+
+
+
+
+
+        public async Task<decimal> ObterTotalResgatesDoMesAsync(long usuarioId, int ano, int mes)
+        {
+            return await _context.Ganhos
+                .Where(g =>
+                    g.UsuarioId == usuarioId &&
+                    g.DataGanho.Year == ano &&
+                    g.DataGanho.Month == mes &&
+                    (g.Categoria == "Investimento" || g.Categoria == "Poupança"))
+                .SumAsync(g => g.Valor);
+        }
+
+
+
     }
 }
