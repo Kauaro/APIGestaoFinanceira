@@ -31,7 +31,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     )
 );
 
-
+/*
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("WebApp",
@@ -42,10 +42,10 @@ builder.Services.AddCors(options =>
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
-}); 
+}); */
 
 
-/*
+
  
 builder.Services.AddCors(options =>
 {
@@ -59,7 +59,6 @@ builder.Services.AddCors(options =>
         });
 });
 
-*/
 
 
 
@@ -131,7 +130,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("WebApp");
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
